@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_delivery_document_mq_bundle" inherit_id="stock.report_delivery_document">
+        <!-- Add Bundle Qty Header -->
+        <xpath expr="//th[@name='th_sm_ordered']" position="before">
+            <th name="th_mq_bundle_qty" class="text-end">Bundle Qty.</th>
+        </xpath>
+
+        <!-- Add Bundle Qty Data -->
+        <xpath expr="//table[@name='stock_move_table']//tbody//tr/td[contains(@class, 'o_td_quantity')][1]" position="before">
+            <td name="td_mq_bundle_qty" class="text-end">
+                <span t-field="move.mq_bundle_qty"/>
+            </td>
+        </xpath>
+
+        <!-- Add Scale Net Weight and Total Bundle at the bottom -->
+        <xpath expr="//div[@name='signature']" position="before">
+            <div t-if="o.mq_scale_net_weight > 0 or o.mq_total_bundle_qty > 0" class="row mt-4 mb-4">
+                <div class="col-5">
+                    <table class="table table-sm">
+                        <tr t-if="o.mq_scale_net_weight > 0" class="border-black">
+                            <td><strong>Scale Net Weight</strong></td>
+                            <td class="text-end">
+                                <span t-field="o.mq_scale_net_weight"/>
+                            </td>
+                        </tr>
+                        <tr t-if="o.mq_total_bundle_qty > 0" class="border-black">
+                            <td class="text-nowrap"><strong>Total Bundle Qty.</strong></td>
+                            <td class="text-end">
+                                <span t-field="o.mq_total_bundle_qty"/>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>

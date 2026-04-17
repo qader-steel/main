@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Sale Order Report Extension -->
+    <template id="report_saleorder_document_driver_info" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//div[@id='informations']" position="before">
+            <div id="mq_driver_info" class="mb-4">
+                <div t-if="doc.driver_name_id"><strong>Driver Name:</strong> <span t-field="doc.driver_name_id.name"/></div>
+                <div t-if="doc.driver_phone_id"><strong>Driver Phone:</strong> <span t-field="doc.driver_phone_id.name"/></div>
+                <div t-if="doc.car_plate_id"><strong>Car Plate No.:</strong> <span t-field="doc.car_plate_id.name"/></div>
+                <div t-if="doc.border_crossing_id"><strong>Border Crossing:</strong> <span t-field="doc.border_crossing_id.name"/></div>
+                <div t-if="doc.scale_no_id"><strong>Scale No.:</strong> <span t-field="doc.scale_no_id.name"/></div>
+            </div>
+        </xpath>
+    </template>
+
+    <!-- Invoice Report Extension -->
+    <template id="report_invoice_document_driver_info" inherit_id="account.report_invoice_document">
+        <xpath expr="//div[@id='informations']" position="before">
+            <div id="mq_driver_info" class="mb-4">
+                <div t-if="o.driver_name_id"><strong>Driver Name:</strong> <span t-field="o.driver_name_id.name"/></div>
+                <div t-if="o.driver_phone_id"><strong>Driver Phone:</strong> <span t-field="o.driver_phone_id.name"/></div>
+                <div t-if="o.car_plate_id"><strong>Car Plate No.:</strong> <span t-field="o.car_plate_id.name"/></div>
+                <div t-if="o.border_crossing_id"><strong>Border Crossing:</strong> <span t-field="o.border_crossing_id.name"/></div>
+                <div t-if="o.scale_no_id"><strong>Scale No.:</strong> <span t-field="o.scale_no_id.name"/></div>
+            </div>
+        </xpath>
+    </template>
+
+    <!-- Delivery Slip Report Extension -->
+    <template id="report_delivery_document_driver_info" inherit_id="stock.report_delivery_document">
+        <xpath expr="//div[@id='informations']" position="before">
+            <div id="mq_driver_info" class="mb-4">
+                <div t-if="o.driver_name_id"><strong>Driver Name:</strong> <span t-field="o.driver_name_id.name"/></div>
+                <div t-if="o.driver_phone_id"><strong>Driver Phone:</strong> <span t-field="o.driver_phone_id.name"/></div>
+                <div t-if="o.car_plate_id"><strong>Car Plate No.:</strong> <span t-field="o.car_plate_id.name"/></div>
+                <div t-if="o.border_crossing_id"><strong>Border Crossing:</strong> <span t-field="o.border_crossing_id.name"/></div>
+                <div t-if="o.scale_no_id"><strong>Scale No.:</strong> <span t-field="o.scale_no_id.name"/></div>
+            </div>
+        </xpath>
+    </template>
+</odoo>

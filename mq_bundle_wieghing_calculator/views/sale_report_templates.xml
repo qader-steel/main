@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_saleorder_document_mq_bundle" inherit_id="sale.report_saleorder_document">
+        <!-- Add Bundle Qty Header -->
+        <xpath expr="//th[@name='th_quantity']" position="before">
+            <th name="th_mq_bundle_qty" class="text-end">Bundle Qty.</th>
+        </xpath>
+
+        <!-- Add Bundle Qty Data -->
+        <xpath expr="//td[@name='td_product_quantity']" position="before">
+            <td name="td_mq_bundle_qty" class="text-end">
+                <span t-field="line.mq_bundle_qty"/>
+            </td>
+        </xpath>
+
+        <!-- Add Total Weight and Total Bundle at the bottom left -->
+        <xpath expr="//div[@name='so_total_summary']" position="after">
+            <div t-if="doc.mq_total_weight > 0 or doc.mq_total_bundle_qty > 0" class="row mt-4">
+                <div class="col-5">
+                    <table class="table table-sm">
+                        <tr t-if="doc.mq_total_weight > 0" class="border-black">
+                            <td><strong>Total Weight (Ton)</strong></td>
+                            <td class="text-end">
+                                <span t-field="doc.mq_total_weight"/>
+                            </td>
+                        </tr>
+                        <tr t-if="doc.mq_total_bundle_qty > 0" class="border-black">
+                            <td class="text-nowrap"><strong>Total Bundle Qty.</strong></td>
+                            <td class="text-end">
+                                <span t-field="doc.mq_total_bundle_qty"/>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>
