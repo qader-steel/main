@@ -7,11 +7,15 @@
         <field name="arch" type="xml">
             <xpath expr="//sheet/group[1]" position="inside">
                 <group string="Transportation Details" name="transportation_details">
-                    <field name="driver_name_id"/>
-                    <field name="driver_phone_id"/>
-                    <field name="car_plate_id"/>
-                    <field name="border_crossing_id"/>
-                    <field name="scale_no_id"/>
+                    <group>
+                        <field name="driver_name_id"/>
+                        <field name="driver_phone_id"/>
+                        <field name="car_plate_id"/>
+                    </group>
+                    <group>
+                        <field name="border_crossing_id"/>
+                        <field name="scale_no_id"/>
+                    </group>
                 </group>
             </xpath>
         </field>

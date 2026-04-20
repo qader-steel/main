@@ -48,6 +48,21 @@ class StockPicking(models.Model):
     border_crossing_id = fields.Many2one("mq.border.crossing", string="Border Crossing", related="sale_id.border_crossing_id", readonly=False)
     scale_no_id = fields.Many2one("mq.scale.no", string="Scale No.", related="sale_id.scale_no_id", readonly=False)
 
+    def _action_done(self):
+        """Automatically create an invoice when a delivery order is validated."""
+        res = super()._action_done()
+        for picking in self:
+            # We only generate an invoice automatically for outgoing deliveries linked to a Sale Order
+            if picking.sale_id and picking.picking_type_id.code == 'outgoing':
+                # Check if there are any lines ready to be invoiced (e.g. based on delivered quantities)
+                invoiceable_lines = picking.sale_id.order_line.filtered(lambda l: l.qty_to_invoice > 0)
+                if invoiceable_lines:
+                    try:
+                        picking.sale_id._create_invoices()
+                    except Exception:
+                        pass
+        return res
+
 
 class AccountMove(models.Model):
     _inherit = "account.move"

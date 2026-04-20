@@ -3,7 +3,10 @@
     <template id="report_delivery_document_mq_bundle" inherit_id="stock.report_delivery_document">
         <!-- Add Bundle Qty Header -->
         <xpath expr="//th[@name='th_sm_ordered']" position="before">
-            <th name="th_mq_bundle_qty" class="text-end">Bundle Qty.</th>
+            <th name="th_mq_bundle_qty" class="text-end">
+                <t t-if="env.user.lang and env.user.lang[:2] == 'ar'">عدد البنادل</t>
+                <t t-else="">Bundle Qty.</t>
+            </th>
         </xpath>
 
         <!-- Add Bundle Qty Data -->
@@ -13,26 +16,53 @@
             </td>
         </xpath>
 
-        <!-- Add Scale Net Weight and Total Bundle at the bottom -->
-        <xpath expr="//div[@name='signature']" position="before">
-            <div t-if="o.mq_scale_net_weight > 0 or o.mq_total_bundle_qty > 0" class="row mt-4 mb-4">
-                <div class="col-5">
-                    <table class="table table-sm">
-                        <tr t-if="o.mq_scale_net_weight > 0" class="border-black">
-                            <td><strong>Scale Net Weight</strong></td>
-                            <td class="text-end">
-                                <span t-field="o.mq_scale_net_weight"/>
-                            </td>
-                        </tr>
-                        <tr t-if="o.mq_total_bundle_qty > 0" class="border-black">
-                            <td class="text-nowrap"><strong>Total Bundle Qty.</strong></td>
-                            <td class="text-end">
-                                <span t-field="o.mq_total_bundle_qty"/>
-                            </td>
-                        </tr>
-                    </table>
+        <!-- Totals injected before 'informations' — loads after driver info so sits directly below it -->
+        <xpath expr="//div[@id='informations']" position="before">
+            <div t-if="o.mq_scale_net_weight > 0 or o.mq_total_bundle_qty > 0" class="row mb-4">
+                <div class="col-12">
+                    <div class="row" style="margin: 0; padding: 10px 16px; background-color: #eef2f7; border-radius: 8px;">
+                        <div t-if="o.mq_scale_net_weight > 0" class="col text-center">
+                            <div style="font-weight: 600; font-size: 0.8em; color: #555; text-transform: uppercase; letter-spacing: 0.03em;">
+                                <t t-if="env.user.lang and env.user.lang[:2] == 'ar'">الوزن الصافي</t>
+                                <t t-else="">Scale Net Weight</t>
+                            </div>
+                            <div style="font-size: 1.05em; font-weight: 700;" t-field="o.mq_scale_net_weight"/>
+                        </div>
+                        <div t-if="o.mq_total_bundle_qty > 0" class="col text-center">
+                            <div style="font-weight: 600; font-size: 0.8em; color: #555; text-transform: uppercase; letter-spacing: 0.03em;">
+                                <t t-if="env.user.lang and env.user.lang[:2] == 'ar'">عدد البنادل الشامل</t>
+                                <t t-else="">Total Bundle Qty.</t>
+                            </div>
+                            <div style="font-size: 1.05em; font-weight: 700;" t-field="o.mq_total_bundle_qty"/>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </xpath>
+        <!-- DONE STATE: Add Bundle Qty Header -->
+        <xpath expr="//th[@name='th_sml_quantity']" position="before">
+            <th name="th_sml_mq_bundle_qty" class="text-end">
+                <t t-if="env.user.lang and env.user.lang[:2] == 'ar'">عدد البنادل</t>
+                <t t-else="">Bundle Qty.</t>
+            </th>
+        </xpath>
+    </template>
+
+    <!-- DONE STATE: Add Bundle Qty Data (Aggregated - No Serial) -->
+    <template id="report_delivery_aggregated_mq_bundle" inherit_id="stock.stock_report_delivery_aggregated_move_lines">
+        <xpath expr="//td[@name='move_line_aggregated_quantity']" position="before">
+            <td name="td_sml_mq_bundle_qty" class="text-end">
+                <span t-if="aggregated_lines[line].get('move')" t-out="aggregated_lines[line]['move'].mq_bundle_qty"/>
+            </td>
+        </xpath>
+    </template>
+
+    <!-- DONE STATE: Add Bundle Qty Data (With Serial) -->
+    <template id="report_delivery_has_serial_mq_bundle" inherit_id="stock.stock_report_delivery_has_serial_move_line">
+        <xpath expr="//td[@name='move_line_lot_quantity']" position="before">
+            <td name="td_sml_mq_bundle_qty" class="text-end">
+                <span t-field="move_line.move_id.mq_bundle_qty"/>
+            </td>
         </xpath>
     </template>
 </odoo>

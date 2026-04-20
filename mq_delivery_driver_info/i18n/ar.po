@@ -1,0 +1,99 @@
+#. module: mq_delivery_driver_info
+#: model:ir.ui.view,arch_db:mq_delivery_driver_info.report_delivery_document_driver_info
+#: model:ir.ui.view,arch_db:mq_delivery_driver_info.report_invoice_document_driver_info
+#: model:ir.ui.view,arch_db:mq_delivery_driver_info.report_saleorder_document_driver_info
+#: model:ir.ui.view,arch_db:mq_delivery_driver_info.view_account_move_form_mq_transportation_details
+#: model:ir.ui.view,arch_db:mq_delivery_driver_info.view_sale_order_form_mq_transportation_details
+#: model:ir.ui.view,arch_db:mq_delivery_driver_info.view_stock_picking_form_mq_transportation_details
+msgid "Transportation Details"
+msgstr "تفاصيل النقل"
+
+#. module: mq_delivery_driver_info
+#: model:ir.model.fields,field_description:mq_delivery_driver_info.field_account_move__driver_name_id
+#: model:ir.model.fields,field_description:mq_delivery_driver_info.field_mq_driver_name__name
+#: model:ir.model.fields,field_description:mq_delivery_driver_info.field_sale_order__driver_name_id
+#: model:ir.model.fields,field_description:mq_delivery_driver_info.field_stock_picking__driver_name_id
+#: model:ir.ui.view,arch_db:mq_delivery_driver_info.report_delivery_document_driver_info
+#: model:ir.ui.view,arch_db:mq_delivery_driver_info.report_invoice_document_driver_info
+#: model:ir.ui.view,arch_db:mq_delivery_driver_info.report_saleorder_document_driver_info
+msgid "Driver Name"
+msgstr "اسم السائق"
+
+#. module: mq_delivery_driver_info
+#: model:ir.model.fields,field_description:mq_delivery_driver_info.field_account_move__driver_phone_id
+#: model:ir.model.fields,field_description:mq_delivery_driver_info.field_mq_driver_phone__name
+#: model:ir.model.fields,field_description:mq_delivery_driver_info.field_sale_order__driver_phone_id
+#: model:ir.model.fields,field_description:mq_delivery_driver_info.field_stock_picking__driver_phone_id
+#: model:ir.ui.view,arch_db:mq_delivery_driver_info.report_delivery_document_driver_info
+#: model:ir.ui.view,arch_db:mq_delivery_driver_info.report_invoice_document_driver_info
+#: model:ir.ui.view,arch_db:mq_delivery_driver_info.report_saleorder_document_driver_info
+msgid "Driver Phone No."
+msgstr "رقم هاتف السائق"
+
+#. module: mq_delivery_driver_info
+#: model:ir.model.fields,field_description:mq_delivery_driver_info.field_account_move__car_plate_id
+#: model:ir.model.fields,field_description:mq_delivery_driver_info.field_mq_car_plate__name
+#: model:ir.model.fields,field_description:mq_delivery_driver_info.field_sale_order__car_plate_id
+#: model:ir.model.fields,field_description:mq_delivery_driver_info.field_stock_picking__car_plate_id
+#: model:ir.ui.view,arch_db:mq_delivery_driver_info.report_delivery_document_driver_info
+#: model:ir.ui.view,arch_db:mq_delivery_driver_info.report_invoice_document_driver_info
+#: model:ir.ui.view,arch_db:mq_delivery_driver_info.report_saleorder_document_driver_info
+msgid "Car Plate No."
+msgstr "رقم لوحة السيارة"
+
+#. module: mq_delivery_driver_info
+#: model:ir.model.fields,field_description:mq_delivery_driver_info.field_account_move__border_crossing_id
+#: model:ir.model.fields,field_description:mq_delivery_driver_info.field_mq_border_crossing__name
+#: model:ir.model.fields,field_description:mq_delivery_driver_info.field_sale_order__border_crossing_id
+#: model:ir.model.fields,field_description:mq_delivery_driver_info.field_stock_picking__border_crossing_id
+#: model:ir.ui.view,arch_db:mq_delivery_driver_info.report_delivery_document_driver_info
+#: model:ir.ui.view,arch_db:mq_delivery_driver_info.report_invoice_document_driver_info
+#: model:ir.ui.view,arch_db:mq_delivery_driver_info.report_saleorder_document_driver_info
+msgid "Border Crossing"
+msgstr "معبر الحدود"
+
+#. module: mq_delivery_driver_info
+#: model:ir.model.fields,field_description:mq_delivery_driver_info.field_account_move__scale_no_id
+#: model:ir.model.fields,field_description:mq_delivery_driver_info.field_mq_scale_no__name
+#: model:ir.model.fields,field_description:mq_delivery_driver_info.field_sale_order__scale_no_id
+#: model:ir.model.fields,field_description:mq_delivery_driver_info.field_stock_picking__scale_no_id
+#: model:ir.ui.view,arch_db:mq_delivery_driver_info.report_delivery_document_driver_info
+#: model:ir.ui.view,arch_db:mq_delivery_driver_info.report_invoice_document_driver_info
+#: model:ir.ui.view,arch_db:mq_delivery_driver_info.report_saleorder_document_driver_info
+msgid "Scale No."
+msgstr "رقم المقياس"
+
+#. module: mq_delivery_driver_info
+#: model:ir.ui.view,arch_db:mq_delivery_driver_info.report_delivery_document_driver_info
+#: model:ir.ui.view,arch_db:mq_delivery_driver_info.report_invoice_document_driver_info
+#: model:ir.ui.view,arch_db:mq_delivery_driver_info.report_saleorder_document_driver_info
+msgid "Driver Name:"
+msgstr "اسم السائق:"
+
+#. module: mq_delivery_driver_info
+#: model:ir.ui.view,arch_db:mq_delivery_driver_info.report_delivery_document_driver_info
+#: model:ir.ui.view,arch_db:mq_delivery_driver_info.report_invoice_document_driver_info
+#: model:ir.ui.view,arch_db:mq_delivery_driver_info.report_saleorder_document_driver_info
+msgid "Driver Phone No.:"
+msgstr "رقم هاتف السائق:"
+
+#. module: mq_delivery_driver_info
+#: model:ir.ui.view,arch_db:mq_delivery_driver_info.report_delivery_document_driver_info
+#: model:ir.ui.view,arch_db:mq_delivery_driver_info.report_invoice_document_driver_info
+#: model:ir.ui.view,arch_db:mq_delivery_driver_info.report_saleorder_document_driver_info
+msgid "Car Plate No.:"
+msgstr "رقم لوحة السيارة:"
+
+#. module: mq_delivery_driver_info
+#: model:ir.ui.view,arch_db:mq_delivery_driver_info.report_delivery_document_driver_info
+#: model:ir.ui.view,arch_db:mq_delivery_driver_info.report_invoice_document_driver_info
+#: model:ir.ui.view,arch_db:mq_delivery_driver_info.report_saleorder_document_driver_info
+msgid "Border Crossing:"
+msgstr "معبر الحدود:"
+
+#. module: mq_delivery_driver_info
+#: model:ir.ui.view,arch_db:mq_delivery_driver_info.report_delivery_document_driver_info
+#: model:ir.ui.view,arch_db:mq_delivery_driver_info.report_invoice_document_driver_info
+#: model:ir.ui.view,arch_db:mq_delivery_driver_info.report_saleorder_document_driver_info
+msgid "Scale No.:"
+msgstr "رقم المقياس:"

@@ -62,5 +62,19 @@ class StockPicking(models.Model):
                     distributed_qty = (move.product_uom_qty / total_demand) * picking.mq_scale_net_weight
                     move.quantity = distributed_qty
 
+class StockMoveLine(models.Model):
+    _inherit = 'stock.move.line'
 
-
+    def _get_aggregated_properties(self, move_line=False, move=False):
+        """
+        Override to include 'Bundle Qty' in the aggregation key so that lines
+        with different bundle quantities are NOT squashed together on the delivery slip.
+        """
+        properties = super()._get_aggregated_properties(move_line=move_line, move=move)
+        
+        m = move or (move_line and move_line.move_id)
+        if m and getattr(m, 'mq_bundle_qty', False):
+            # Append bundle qty to uniquely separate these rows on the printed report
+            properties['line_key'] += f"_{m.mq_bundle_qty}"
+            
+        return properties
