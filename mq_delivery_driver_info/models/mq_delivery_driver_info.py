@@ -97,7 +97,7 @@ class AccountMove(models.Model):
 
     sale_order_ids = fields.Many2many(
         comodel_name="sale.order",
-        compute="_compute_sale_order_ids",
+        compute="_compute_order_ids",
         string="Related Sales Orders"
     )
     
