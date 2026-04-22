@@ -9,7 +9,8 @@
             <xpath expr="//field[@name='invoice_line_ids']//list//field[@name='quantity']" position="before">
                 <field name="mq_bundle_qty" />
                 <field name="mq_quantity" />
-                <field name="mq_qty_delivered" />
+                <field name="mq_qty_delivered" column_invisible="parent.move_type not in ('out_invoice', 'out_refund')"/>
+                <field name="mq_qty_received" column_invisible="parent.move_type not in ('in_invoice', 'in_refund')"/>
             </xpath>
             
             <xpath expr="//field[@name='invoice_line_ids']//list//field[@name='quantity']" position="attributes">

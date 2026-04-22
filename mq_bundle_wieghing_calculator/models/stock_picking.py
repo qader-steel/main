@@ -25,9 +25,18 @@ class StockMove(models.Model):
         for vals in vals_list:
             if 'sale_line_id' in vals and vals['sale_line_id']:
                 sale_line = self.env['sale.order.line'].browse(vals['sale_line_id'])
-                if sale_line.exists():
-                    vals.setdefault('mq_bundle_qty', sale_line.mq_bundle_qty)
-                    vals.setdefault('mq_quantity', sale_line.mq_quantity)
+                if sale_line.exists() and False not in (sale_line.mq_bundle_qty, sale_line.mq_quantity):
+                    if 'mq_bundle_qty' not in vals or not vals['mq_bundle_qty']:
+                        vals['mq_bundle_qty'] = sale_line.mq_bundle_qty
+                    if 'mq_quantity' not in vals or not vals['mq_quantity']:
+                        vals['mq_quantity'] = sale_line.mq_quantity
+            elif 'purchase_line_id' in vals and vals['purchase_line_id']:
+                purchase_line = self.env['purchase.order.line'].browse(vals['purchase_line_id'])
+                if purchase_line.exists():
+                    if 'mq_bundle_qty' not in vals or not vals['mq_bundle_qty']:
+                        vals['mq_bundle_qty'] = purchase_line.mq_bundle_qty
+                    if 'mq_quantity' not in vals or not vals['mq_quantity']:
+                        vals['mq_quantity'] = purchase_line.mq_quantity
         return super(StockMove, self).create(vals_list)
 
 

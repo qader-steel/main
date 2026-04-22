@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="view_account_move_form_mq_transportation_details" model="ir.ui.view">
-        <field name="name">account.move.form.mq.transportation.details</field>
-        <field name="model">account.move</field>
-        <field name="inherit_id" ref="account.view_move_form"/>
+    <record id="purchase_order_form_mq_transportation_details" model="ir.ui.view">
+        <field name="name">purchase.order.form.mq.transportation.details</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
         <field name="arch" type="xml">
             <xpath expr="//sheet//group" position="inside">
-                <group string="Transportation Details" name="transportation_details" invisible="move_type not in ('out_invoice', 'out_refund', 'in_invoice', 'in_refund')">
+                <group string="Transportation Details" name="transportation_details">
                     <group>
                         <field name="driver_name_id"/>
                         <field name="driver_phone_id"/>

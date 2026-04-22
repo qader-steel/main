@@ -27,26 +27,36 @@ class AccountMoveLine(models.Model):
         for line in self:
             line.mq_qty_delivered = sum(line.sale_line_ids.mapped('qty_delivered')) if line.sale_line_ids else 0.0
 
+    mq_qty_received = fields.Float(string="Received", compute="_compute_mq_qty_received", digits='Product Unit of Measure')
+
+    @api.depends('purchase_line_id.qty_received')
+    def _compute_mq_qty_received(self):
+        for line in self:
+            line.mq_qty_received = line.purchase_line_id.qty_received if line.purchase_line_id else 0.0
+
 class AccountMove(models.Model):
     """
-    Inherited to compute total bundle quantity and total weight for invoices.
+    Inherited to compute total bundle quantity and total weight for invoices/bills.
     """
     _inherit = 'account.move'
 
     mq_total_bundle_qty = fields.Float(string="Total Bundle Qty.", compute="_compute_mq_totals", store=True)
     mq_total_weight = fields.Float(string="Total Weight (Ton)", compute="_compute_mq_totals", store=True)
 
-    @api.depends('invoice_line_ids.mq_bundle_qty', 'invoice_line_ids.sale_line_ids')
+    @api.depends('invoice_line_ids.mq_bundle_qty', 'invoice_line_ids.sale_line_ids', 'invoice_line_ids.purchase_line_id')
     def _compute_mq_totals(self):
         for move in self:
             total_bundle = sum(move.invoice_line_ids.mapped('mq_bundle_qty'))
             
-            # Fetch total weight from associated sale orders if they exist
+            # Fetch total weight from associated sale or purchase orders
+            total_weight = 0.0
             sale_orders = move.invoice_line_ids.mapped('sale_line_ids.order_id')
             if sale_orders:
                 total_weight = sum(sale_orders.mapped('mq_total_weight'))
             else:
-                total_weight = 0.0
+                purchase_orders = move.invoice_line_ids.mapped('purchase_line_id.order_id')
+                if purchase_orders:
+                    total_weight = sum(purchase_orders.mapped('mq_total_weight'))
 
             move.mq_total_bundle_qty = total_bundle
             move.mq_total_weight = total_weight

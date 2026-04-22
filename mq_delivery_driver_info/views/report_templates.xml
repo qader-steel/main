@@ -19,6 +19,18 @@
         </xpath>
     </template>
 
+    <template id="report_purchaseorder_user_lang" inherit_id="purchase.report_purchaseorder">
+        <xpath expr="//t[@t-foreach='docs']//t[@t-call='purchase.report_purchaseorder_document']" position="attributes">
+            <attribute name="t-lang">env.user.lang</attribute>
+        </xpath>
+    </template>
+
+    <template id="report_purchasequotation_user_lang" inherit_id="purchase.report_purchasequotation">
+        <xpath expr="//t[@t-foreach='docs']//t[@t-call='purchase.report_purchasequotation_document']" position="attributes">
+            <attribute name="t-lang">env.user.lang</attribute>
+        </xpath>
+    </template>
+
     <!-- Sale Order Report Extension -->
     <template id="report_saleorder_document_driver_info" inherit_id="sale.report_saleorder_document">
         <xpath expr="//div[@id='informations']" position="before">
@@ -156,6 +168,93 @@
         <xpath expr="//div[hasclass('o_stock_report_header_row')]" position="before">
             <t t-set="o" t-value="o.with_context(lang=env.user.lang)"/>
             <div id="mq_driver_info_picking" class="row mb-2" style="margin: 0; padding: 10px 16px; background-color: #eef2f7; border-radius: 8px;">
+                <div t-if="o.driver_name_id" class="col text-center">
+                    <div style="font-weight: 600; font-size: 0.8em; color: #555; text-transform: uppercase; letter-spacing: 0.03em;">
+                        <t t-if="env.user.lang and env.user.lang[:2] == 'ar'">اسم السائق</t>
+                        <t t-else="">Driver Name</t>
+                    </div>
+                    <div style="font-size: 1.05em; font-weight: 700;" t-field="o.driver_name_id.name"/>
+                </div>
+                <div t-if="o.driver_phone_id" class="col text-center">
+                    <div style="font-weight: 600; font-size: 0.8em; color: #555; text-transform: uppercase; letter-spacing: 0.03em;">
+                        <t t-if="env.user.lang and env.user.lang[:2] == 'ar'">رقم هاتف السائق</t>
+                        <t t-else="">Driver Phone No.</t>
+                    </div>
+                    <div style="font-size: 1.05em; font-weight: 700;" t-field="o.driver_phone_id.name"/>
+                </div>
+                <div t-if="o.car_plate_id" class="col text-center">
+                    <div style="font-weight: 600; font-size: 0.8em; color: #555; text-transform: uppercase; letter-spacing: 0.03em;">
+                        <t t-if="env.user.lang and env.user.lang[:2] == 'ar'">رقم لوحة السيارة</t>
+                        <t t-else="">Car Plate No.</t>
+                    </div>
+                    <div style="font-size: 1.05em; font-weight: 700;" t-field="o.car_plate_id.name"/>
+                </div>
+                <div t-if="o.border_crossing_id" class="col text-center">
+                    <div style="font-weight: 600; font-size: 0.8em; color: #555; text-transform: uppercase; letter-spacing: 0.03em;">
+                        <t t-if="env.user.lang and env.user.lang[:2] == 'ar'">معبر الحدود</t>
+                        <t t-else="">Border Crossing</t>
+                    </div>
+                    <div style="font-size: 1.05em; font-weight: 700;" t-field="o.border_crossing_id.name"/>
+                </div>
+                <div t-if="o.scale_no_id" class="col text-center">
+                    <div style="font-weight: 600; font-size: 0.8em; color: #555; text-transform: uppercase; letter-spacing: 0.03em;">
+                        <t t-if="env.user.lang and env.user.lang[:2] == 'ar'">رقم المقياس</t>
+                        <t t-else="">Scale No.</t>
+                    </div>
+                    <div style="font-size: 1.05em; font-weight: 700;" t-field="o.scale_no_id.name"/>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+    <!-- Purchase Report Extensions -->
+    <template id="report_purchasequotation_document_driver_info" inherit_id="purchase.report_purchasequotation_document">
+        <xpath expr="//div[@id='informations']" position="before">
+            <t t-set="o" t-value="o.with_context(lang=env.user.lang)"/>
+            <div id="mq_driver_info" class="row mb-2" style="margin: 0; padding: 10px 16px; background-color: #eef2f7; border-radius: 8px;">
+                <div t-if="o.driver_name_id" class="col text-center">
+                    <div style="font-weight: 600; font-size: 0.8em; color: #555; text-transform: uppercase; letter-spacing: 0.03em;">
+                        <t t-if="env.user.lang and env.user.lang[:2] == 'ar'">اسم السائق</t>
+                        <t t-else="">Driver Name</t>
+                    </div>
+                    <div style="font-size: 1.05em; font-weight: 700;" t-field="o.driver_name_id.name"/>
+                </div>
+                <div t-if="o.driver_phone_id" class="col text-center">
+                    <div style="font-weight: 600; font-size: 0.8em; color: #555; text-transform: uppercase; letter-spacing: 0.03em;">
+                        <t t-if="env.user.lang and env.user.lang[:2] == 'ar'">رقم هاتف السائق</t>
+                        <t t-else="">Driver Phone No.</t>
+                    </div>
+                    <div style="font-size: 1.05em; font-weight: 700;" t-field="o.driver_phone_id.name"/>
+                </div>
+                <div t-if="o.car_plate_id" class="col text-center">
+                    <div style="font-weight: 600; font-size: 0.8em; color: #555; text-transform: uppercase; letter-spacing: 0.03em;">
+                        <t t-if="env.user.lang and env.user.lang[:2] == 'ar'">رقم لوحة السيارة</t>
+                        <t t-else="">Car Plate No.</t>
+                    </div>
+                    <div style="font-size: 1.05em; font-weight: 700;" t-field="o.car_plate_id.name"/>
+                </div>
+                <div t-if="o.border_crossing_id" class="col text-center">
+                    <div style="font-weight: 600; font-size: 0.8em; color: #555; text-transform: uppercase; letter-spacing: 0.03em;">
+                        <t t-if="env.user.lang and env.user.lang[:2] == 'ar'">معبر الحدود</t>
+                        <t t-else="">Border Crossing</t>
+                    </div>
+                    <div style="font-size: 1.05em; font-weight: 700;" t-field="o.border_crossing_id.name"/>
+                </div>
+                <div t-if="o.scale_no_id" class="col text-center">
+                    <div style="font-weight: 600; font-size: 0.8em; color: #555; text-transform: uppercase; letter-spacing: 0.03em;">
+                        <t t-if="env.user.lang and env.user.lang[:2] == 'ar'">رقم المقياس</t>
+                        <t t-else="">Scale No.</t>
+                    </div>
+                    <div style="font-size: 1.05em; font-weight: 700;" t-field="o.scale_no_id.name"/>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="report_purchaseorder_document_driver_info" inherit_id="purchase.report_purchaseorder_document">
+        <xpath expr="//div[@id='informations']" position="before">
+            <t t-set="o" t-value="o.with_context(lang=env.user.lang)"/>
+            <div id="mq_driver_info" class="row mb-2" style="margin: 0; padding: 10px 16px; background-color: #eef2f7; border-radius: 8px;">
                 <div t-if="o.driver_name_id" class="col text-center">
                     <div style="font-weight: 600; font-size: 0.8em; color: #555; text-transform: uppercase; letter-spacing: 0.03em;">
                         <t t-if="env.user.lang and env.user.lang[:2] == 'ar'">اسم السائق</t>
